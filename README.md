@@ -1,4 +1,4 @@
-#Payroll Management System
+#PayrollManagementSystem
 <h3>Project Description</h3>
 The Payroll Management System is designed to efficiently handle an organization's employee financial records. It encompasses functionalities to manage salaries, deductions, leave requests, and more, ensuring timely and accurate payment disbursement.
 

@@ -1,0 +1,53 @@
+{% if session['role'] == 'admin'%}
+    {% include "admin_head.html" %}
+{% elif session['role'] == "employee"%}
+    {% include "employee_head.html" %}
+{% else %}
+    {% include "head.html"%}
+{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="text-center mt-4 h3"><b>View Employee TimeSheet</b></div>
+        <table class="table text-center table-primary table-bordered mt-3">
+          <tr>
+              <th>Employee Name</th>
+              <th>Day</th>
+              <th>Check In</th>
+              <th>Status</th>
+              <th>Checked Out</th>
+              <th>Hours</th>
+              <th>Salary Reports</th>
+          </tr>
+       <tbody>
+        {% for time_sheet in time_sheets: %}
+        {% set employee = get_employee_id(time_sheet['employee_id'])%}
+        <tr>
+            <td>{{employee['firstname']}} {{employee['lastname']}}</td>
+            <td>{{time_sheet['day']}}</td>
+            <td>{{time_sheet['check_in']}}</td>
+            {% if session['role'] == 'employee'%}
+                {% if time_sheet['status'] == 'Checked In' and current_date == time_sheet['day']%}
+                    <td>
+                        <a href="check_out?time_sheet_id={{time_sheet['_id']}}&employee_id={{employee['_id']}}" class="btn btn-primary w-100">Check Out</a>
+                    </td>
+                {% else%}
+                    <td>Checked Out</td>
+                {% endif%}
+            {% endif %}
+            {% if session['role'] == 'admin'%}
+                <td>Checked Out</td>
+            {% endif %}
+            <td>{{time_sheet['check_out']}}</td>
+            <td>{{time_sheet['rounded_hours']}} Hours</td>
+            {% if employee['wage_type'] == 'hour_based'%}
+                <td>
+                    <a href="salary_report?time_sheet_id={{time_sheet['_id']}}&employee_id={{employee['_id']}}" class="btn btn-primary w-100">Salary Report</a>
+                </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>

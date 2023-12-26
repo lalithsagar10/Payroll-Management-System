@@ -1,0 +1,68 @@
+{% include "admin_head.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card p-3 mt-4">
+                <form action="modify_employee1" method="post">
+                    <input type="hidden" name="employee_id" value="{{employee_id}}">
+                    <div class="text-center"><h3>Employee Details</h3></div>
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="firstname" class="form-label"><h6>First Name</h6></label>
+                            <input type="text" name="firstname" id="firstname" value="{{employee['firstname']}}" class="form-control"  placeholder="Enter First Name">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="lastname" class="form-label"><h6>Last Name</h6></label>
+                            <input type="text" name="lastname" id="lastname" value="{{employee['lastname']}}" class="form-control"  placeholder="Enter Last Name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="dob" class="form-label"><h6>Date of Birth</h6></label>
+                            <input type="date" name="dob" id="dob" value="{{employee['dob']}}" class="form-control"  placeholder="Enter ">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="phone" class="form-label"><h6>Contact Info</h6></label>
+                            <input type="tel" name="phone" id="phone" value="{{employee['phone']}}" class="form-control"  placeholder="Enter Phone Number">
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label for="address"><h6>Address</h6></label>
+                        <textarea id="address"  name="address" value="{{employee['address']}}" class="form-control"></textarea>
+                     </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="department" class="form-label"><h6>Department</h6></label>
+                            <input type="text" name="department" id="department" value="{{employee['department']}}" class="form-control"  placeholder="Enter Department">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="employement_start_date" class="form-label"><h6>Employement Start Date</h6></label>
+                            <input type="date" name="employement_start_date" id="employement_start_date" value="{{employee['employement_start_date']}}" class="form-control"  placeholder="Enter Employement Start Date ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="bank_info" class="form-label"><h6>Bank Info</h6></label>
+                            <input type="number" name="bank_info" id="bank_info" value="{{employee['bank_info']}}" class="form-control"  placeholder="Enter Bank Info ">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="wage_type" class="form-label"><h6>Wage Type</h6></label>
+                            <select id="wage_type" name="wage_type" class="form-control" >
+                                <option value="wage_type" selected disabled="disabled">Select type</option>
+                                <option value="salary">Salary Employee</option>
+                                <option value="hour">Hour Employee</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <input type="submit" value="Modify" class="btn btn-primary w-100">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>

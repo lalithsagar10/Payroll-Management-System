@@ -1,0 +1,34 @@
+{% include "admin_head.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-4">
+            <div class="card p-3 mt-3">
+                <div class="text-center mt-3 h3"><b>Salary Report</b></div>
+                <form action="add_salary_report1" method="post">
+                    <input type="hidden" name="employee_id" value="{{employee_id}}">
+                    <input type="hidden" name="time_sheet_id" value="{{time_sheet_id}}">
+                    <div class="mt-3">
+                        <label for="allowance_id" class="form-label">Apply Extra Allowances</label>
+                        <select name="allowance_id" id="allowance_id" required class="form-control">
+                            <option value="">Choose Allowances</option>
+                            {% for allowance in allowances:%}
+                                <option value="{{allowance['_id']}}">Bonus {{allowance['bonus']}} -> Insurance {{allowance['insurance']}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if session['wage_type'] == "salary_based" %}
+                    <div class="mt-2">
+                        <label for="over_time" class="form-label">Over Time</label>
+                        <input type="number" min="0" name="over_time" id="over_time" required placeholder="Over Time" class="form-control">
+                    </div>
+                    {% endif %}
+                    <div class="mt-3">
+                        <input type="submit" value="Add Salary Report" class="btn btn-success w-100">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

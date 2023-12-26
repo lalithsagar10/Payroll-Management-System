@@ -1,0 +1,33 @@
+{% include "head.html" %}
+<style>
+body {
+ background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjk5Ni0wMTYta3JvaXI5cWMuanBn.jpg");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card p-3 mt-5">
+                <form action="admin_login1"  method="post">
+                    <div class="text-center"><h2>Admin Login</h2></div>
+                    <div class="mt-2">
+                        <label for="email" class="form-label"><h6>Email</h6></label>
+                        <input type="email" name="email" id="email" class="form-control" required placeholder="Enter Email">
+                    </div>
+                    <div class="mt-2">
+                        <label for="password" class="form-label"><h6>Password</h6></label>
+                        <input type="password" name="password" id="password" class="form-control" required placeholder="Enter Password">
+                    </div>
+                    <div class="mt-2">
+                        <input type="submit" value="Login" class="btn btn-primary w-100">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

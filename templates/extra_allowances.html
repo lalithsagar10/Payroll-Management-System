@@ -1,0 +1,27 @@
+    {% include "admin_head.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3 mt-3">
+            <form action="add_extra_allowances">
+                <input type="submit" value="Add Extra Allowances" class="btn btn-success w-100">
+            </form>
+        </div>
+        {% for allowance in allowances: %}
+            <div class="col-md-3 mt-3">
+                <div class="card p-3 mt-2">
+                    <div class="row">
+                        <div>
+                            <div class="text-muted" style="font-size:80%">Bonus</div>
+                            <div><b>$ {{allowance['bonus']}}</b></div>
+                        </div>
+                        <div>
+                            <div class="text-muted" style="font-size:80%">Insurance</div>
+                            <div><b>${{allowance['insurance']}}</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

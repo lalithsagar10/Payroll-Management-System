@@ -1,0 +1,71 @@
+{% if session['role'] == 'admin'%}
+    {% include "admin_head.html" %}
+{% elif session['role'] == "employee"%}
+    {% include "employee_head.html" %}
+{% else %}
+    {% include "head.html"%}
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9"></div>
+       {% if session['role'] == "employee"%}
+        <div class="col-md-3 mt-4">
+            <form action="reason_for_apply">
+                <input type="submit" value="Apply For Leave" class="btn btn-danger w-100">
+            </form>
+        </div>
+        {% endif %}
+        <div class="text-center mt-3 h3">View Employee Leaves</div>
+        {% for leave in leaves: %}
+        {% set employee = get_employee_id(leave['employee_id'])%}
+            <div class="col-md-3 mt-3">
+                <div class="card p-3 mt-2">
+                    <div class="row">
+                        <div class="mt-1">
+                            <div class="text-muted" style="font-size:80%">Employee Name</div>
+                            <div><b>{{employee['firstname']}} {{employee['lastname']}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Start Date</div>
+                            <div class="mt-1"><b>{{leave['start_date']}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">End Date</div>
+                            <div class="mt-1"><b>{{leave['end_date']}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Number Of Days</div>
+                            <div class="mt-1"><b>{{leave['no_of_days']}} Days</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Reason For Leave</div>
+                            <div class="mt-1"><b>{{leave['reason']}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Status</div>
+                            <div class="mt-1"><b>{{leave['status']}}</b></div>
+                        </div>
+                        {% if session['role']=='admin'%}
+                            {% if leave['status'] == 'Applied For Leave'%}
+                                 <div class="row mt-2">
+                                     <div class="col-md-6">
+                                          <a href="accept_leave?leave_id={{leave['_id']}}&employee_id={{employee['_id']}}" class="btn btn-primary w-100">Accept</a>
+                                     </div>
+                                   <div class="col-md-6">
+                                        <a href="reject_leave?leave_id={{leave['_id']}}&employee_id={{employee['_id']}}" class="btn btn-danger w-100">Reject</a>
+                                   </div>
+                                 </div>
+                            {% endif %}
+                        {% endif %}
+                           {% if leave['status'] == 'Leave Accepted' %}
+                                <div class="mt-2">
+                                    <a href="view_deduction?employee_id={{employee['_id']}}&leave_id={{leave['_id']}}" class="btn btn-warning w-100">View Salary Deduction</a>
+                                </div>
+                        {% endif %}
+                      </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

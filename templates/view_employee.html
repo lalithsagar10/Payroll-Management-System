@@ -1,0 +1,102 @@
+    {% include "admin_head.html" %}
+<div class="container mt-3 p-2">
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3 mt-2">
+            <form action="add_employee">
+                <input type="submit" value="Add Employee" class="btn btn-primary w-100">
+            </form>
+        </div>
+        <div class="text-center mt-3"><h3><i>Employee Details</i></h3></div>
+         {% for employee in employees: %}
+        {% set payrol = get_pay_salary(employee['_id'])%}
+        <div class="col-md-6">
+                <div class="card p-3 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-muted mt-1">Employee Name</div>
+                            <a href="view_pay_salary?employee_id={{employee['_id']}}&employee_type={{employee['wage_type']}}" class="mt-1"><b>{{employee['firstname']}} {{employee['lastname']}}</b></a>
+                        </div>
+                         <div class="col-md-6">
+                             <div class="row">
+                                 <div class="col-md-6">
+                                      <div class="text-muted mt-1">DOB</div>
+                                     <div class="mt-1"><b>{{employee['dob']}}</b></div>
+                                 </div>
+                                  <div class="col-md-6 mt-2">
+                                    <form action="modify_employee">
+                                         <input type="hidden" name="employee_id" value="{{employee['_id']}}">
+                                         <div>
+                                            <input type="submit" value="Modify" class="btn btn-success w-100">
+                                         </div>
+                                     </form>
+                                  </div>
+                             </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="text-muted mt-1">Email</div>
+                             <div class="mt-1"><b>{{employee['email']}}</b></div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="text-muted mt-1">Phone Number</div>
+                             <div class="mt-1"><b>{{employee['phone']}}</b></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted mt-1">Gender</div>
+                             <div class="mt-1"><b>{{employee['gender']}}</b></div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="text-muted mt-1">Department</div>
+                             <div class="mt-1"><b>{{employee['department']}}</b></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted mt-1">Start Date</div>
+                            <div class="mt-1"><b>{{employee['employement_start_date']}}</b></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted mt-1">Bank Number</div>
+                            <input type="text" value="{{employee['bank_info']}}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted  mt-1">Account Type</div>
+                            <div class="mt-1"><b>{{employee['account_type']}}</b></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted mt-1">Wage Type</div>
+                            <div class="mt-1"><b>{{employee['wage_type']}}</b></div>
+                        </div>
+                        {% if employee['wage_type'] == "salary_based" %}
+                         <div class="col-md-6">
+                            <div class="text-muted mt-1">Income</div>
+                            <div class="mt-1"><b>$ {{payrol['income']}}</b></div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="text-muted mt-1">Pay Frequency</div>
+                            <div class="mt-1"><b>{{payrol['yearly_pay_frequency']}}</b></div>
+                        </div>
+                        {% endif %}
+                         {% if employee['wage_type'] == "hour_based" %}
+                         <div class="col-md-6">
+                            <div class="text-muted mt-1">Hourly Wage</div>
+                            <div class="mt-1"><b>$ {{payrol['hourly_wage']}}</b></div>
+                        </div>
+                        <div class="col-md-6"></div>
+
+                        <div class="col-md-4 mt-2">
+                            <a href="time_sheet?employee_id={{employee['_id']}}" class="btn btn-success w-100">View TimeSheet</a>
+                        </div>
+                        {% endif %}
+                         {% if employee['wage_type'] == "salary_based" %}
+                            <div class="col-md-4 mt-2">
+                                <a href="apply_leave?employee_id={{employee['_id']}}" class="btn btn-danger w-100">Leaves</a>
+                            </div>
+                           <div class="col-md-4 mt-2">
+                                <a href="salary_report?employee_id={{employee['_id']}}" class="btn btn-primary w-100">Salary Report</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

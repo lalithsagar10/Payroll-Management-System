@@ -1,0 +1,28 @@
+    {% include "admin_head.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card p-3 mt-5">
+                <form action="add_tax1"  method="post">
+                    <div class="text-center"><h2>Tax Information</h2></div>
+                    <div class="mt-4">
+                        <label for="tax_type" class="form-label"><h6>Tax Type</h6></label>
+                        <input type="text" name="tax_type" id="tax_type" class="form-control" required placeholder="Enter Tax Type">
+                    </div>
+                    <div class="mt-4">
+                        <label for="tax_amount" class="form-label"><h6>Tax Amount(in%)</h6></label>
+                        <input type="number" min="1" name="tax_amount" id="tax_amount" class="form-control" required placeholder="Enter Tax Amount">
+                    </div>
+                    <div class="mt-4">
+                        <input type="submit" value="Add" class="btn btn-primary w-100">
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

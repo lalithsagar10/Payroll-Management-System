@@ -1,0 +1,48 @@
+{% include "employee_head.html" %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+                <div class="card p-3 mt-5">
+                    <div class="mt-3">
+                        <div><b>Employee Name:</b>{{employee['firstname']}}{{employee['lastname']}}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div><b>Email:</b>{{employee['email']}}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div><b>Phone:</b>{{employee['phone']}}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div><b>Gender:</b>{{employee['gender']}}</div>
+                    </div>
+                    <div class="mt-2">
+                        <div><b>DOB:</b>{{employee['dob']}}</div>
+                    </div>
+                    <div class="mt-2"><a href="/change_password" class="btn btn-primary w-100">Change Password</a></div>
+                </div>
+        </div>
+        <div class="col-md-4 mt-5">
+            {% set timesheet = get_timesheet(employee['_id'])%}
+            {% if current_date != timesheet['day']%}
+                {% set check_out = get_update_checkout(timesheet['day'])%}
+                <div class="mt-5 h3 card p-3" style="color: red;">Please Check Out "{{timesheet['day']}}" This Date Login</div>
+            {% endif%}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<style>
+body {
+ background-image: url("https://st3.depositphotos.com/7865540/13724/i/450/depositphotos_137243744-stock-photo-payroll-concept-professionals-team-at.jpg");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+</style>
+

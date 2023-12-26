@@ -1,0 +1,53 @@
+{% if session['role'] == 'admin'%}
+    {% include "admin_head.html" %}
+{% elif session['role'] == "employee"%}
+    {% include "employee_head.html" %}
+{% else %}
+    {% include "head.html"%}
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9"></div>
+        {% if session['role'] == "admin"%}
+            <div class="col-md-3 mt-4">
+                <form action="add_salary_report">
+                    <input type="hidden" name="employee_id" value="{{employee_id}}">
+                    <input type="hidden" name="time_sheet_id" value="{{time_sheet_id}}">
+                    <input type="submit" value="Add Salary Report" class="btn btn-success w-100">
+                </form>
+            </div>
+        {% endif %}
+        <div class="text-center mt-4 h3"><b>View Employee Salary Report</b></div>
+        <table class="table text-center table-primary table-bordered mt-3">
+          <tr>
+            <thead>
+              <th>Employee Name</th>
+              <th>Deduction Amount</th>
+              <th>Allowances</th>
+              <th>Total Salary</th>
+              <th>Hourly Worked</th>
+            </thead>
+          </tr>
+       <tbody>
+        {% for report in reports: %}
+        {% set employee = get_employee_id(report['employee_id'])%}
+
+        {% set allowance = get_extra_allowances(report['allowance_id'])%}
+        <tr>
+            <td>{{employee['firstname']}} {{employee['lastname']}}</td>
+            {% if 'deduction_id' in report:%}
+              {% set deduction_amount = get_deduction_id_by_salary(report['deduction_id'])%}
+                <td>$ {{deduction_amount}}</td>
+                {% else%}
+                <td>Deducted For Only Salary Employee</td>
+            {% endif %}
+            <td>Bonus $ {{allowance['bonus']}} -> Insurance $ {{allowance['insurance']}}</td>
+            <td>$ {{report['total_salary']}}</td>
+            <td>{{report['hours_worked']}} Hours</td>
+        </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>

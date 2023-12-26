@@ -1,0 +1,62 @@
+{% include "employee_head.html" %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let dtToday = new Date();
+        let month = dtToday.getMonth() + 1;
+        let day = dtToday.getDate();
+        let year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        var today = year + '-' + month + '-' + day;
+        $("#day").attr("min",today)
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var today = new Date().toISOString().slice(0, 16);
+            $("#check_in").attr("min",today)
+        });
+
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var today = new Date().toISOString().slice(0, 16);
+            $("#check_out").attr("min",today)
+        });
+
+    </script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-4">
+            <div class="card p-3 mt-3">
+                <div class="text-center h3 mt-2"><b>Upload Time Sheet</b></div>
+                <form action="add_time_sheet1" method="post">
+                    <div class="mt-1">
+                        <label for="day" class="form-label">Day</label>
+                        <input type="date" name="day" id="day" required class="form-control">
+                    </div>
+                     <div class="mt-1">
+                        <label for="check_in" class="form-label">Check In</label>
+                        <input type="time" name="check_in" id="check_in" required class="form-control">
+                    </div>
+                     <div class="mt-1">
+                        <label for="check_out" class="form-label">Check Out</label>
+                        <input type="time" name="check_out" id="check_out" required class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <input type="submit" value="Upload Time Sheet" class="btn btn-primary w-100">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

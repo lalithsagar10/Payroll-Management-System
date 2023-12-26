@@ -1,0 +1,121 @@
+{% include "admin_head.html" %}
+<script>
+    $(document).ready(function(){
+    $("#wage_type").val("salary_based")
+       add_text_box()
+      $("#wage_type").on("change",function(){
+        add_text_box()
+      });
+    $("#wage_type").val("salary_based")
+       add_text_box1()
+      $("#wage_type").on("change",function(){
+        add_text_box1()
+      });
+    });
+    function add_text_box(){
+        wage_type = $("#wage_type").val()
+        let my_text_box = ""
+        if(wage_type==="salary_based"){
+            my_text_box = `<label>Income</label><input type="number" class="form-control" name="income" required placeholder="Enter Income">`
+        }
+        $("#my_text_box").html(my_text_box)
+    }
+    function add_text_box1(){
+        wage_type = $("#wage_type").val()
+        let my_text_box1 = ""
+        if(wage_type==="salary_based"){
+            my_text_box1 = `<label>Yearly Pay Frequency</label>
+            <select name="yearly_pay_frequency" id="yearly_pay_frequency" required class="form-control">
+                                        <option value="">Choose Pay</option>
+                                        <option value="12 Times">12 Times</option>
+                                        <option value="24 Times">24 Times</option>
+            </select>`
+        }else {
+            my_text_box1 = `<label>Hourly Wage</label><input type="number" min="0" name="hourly_wage" id="hourly_wage" required placeholder="Enter Hourly Pay" class="form-control">`
+        }
+        $("#my_text_box1").html(my_text_box1)
+    }
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card p-3 mt-4">
+                <form action="add_employee1" method="post">
+                    <div class="text-center"><h3>Employee Details</h3></div>
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="firstname" class="form-label"><h6>First Name</h6></label>
+                            <input type="text" name="firstname" id="firstname" class="form-control" required placeholder="Enter First Name">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="lastname" class="form-label"><h6>Last Name</h6></label>
+                            <input type="text" name="lastname" id="lastname" class="form-control" required placeholder="Enter Last Name">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="dob" class="form-label"><h6>Date of Birth</h6></label>
+                            <input type="date" name="dob" id="dob" class="form-control" required placeholder="Enter ">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="phone" class="form-label"><h6>Contact Info</h6></label>
+                            <input type="tel" name="phone" id="phone" class="form-control" required placeholder="Enter Phone Number">
+                        </div>
+                         <div class="col-md-4 mt-3">
+                            <label for="password" class="form-label"><h6>Password</h6></label>
+                            <input type="password" name="password" id="password" class="form-control" required placeholder="Enter Password">
+                        </div>
+                    <div class="mt-3">
+                            <label for="gender" class="form-label"><h6>Gender</h6></label>
+
+                            <input type="radio" id="gender" value="Male" name="gender"  required>Male
+
+                            <input type="radio" id="gender1" value="Female" name="gender" required>Female
+                    </div>
+                   <div class="mt-1">
+                        <label for="address"><h6>Address</h6></label>
+                        <textarea id="address"  name="address" class="form-control"></textarea>
+                    </div>
+                         <div class="col-md-6 mt-3">
+                            <label for="email" class="form-label"><h6>Email</h6></label>
+                            <input type="email" name="email" id="email" class="form-control" required placeholder="Enter Email">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="department" class="form-label"><h6>Department</h6></label>
+                            <input type="text" name="department" id="department" class="form-control" required placeholder="Enter Department">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="employement_start_date" class="form-label"><h6>Employement Start Date</h6></label>
+                            <input type="date" name="employement_start_date" id="employement_start_date" class="form-control" required placeholder="Enter Employement Start Date ">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="bank_info" class="form-label"><h6>Bank Info</h6></label>
+                            <textarea id="bank_info"  name="bank_info" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="account_type" class="form-label"><h6>Type Of Account</h6></label>
+                            <select id="account_type" name="account_type" class="form-control" >
+                                <option value="account_type" selected disabled="disabled">Select type</option>
+                                <option value="saving">Saving Account</option>
+                                <option value="checking">Checking Account</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="wage_type" class="form-label"><h6>Wage Type</h6></label>
+                            <select id="wage_type" name="wage_type" class="form-control" >
+                                <option value="wage_type" selected disabled="disabled">Select type</option>
+                                <option value="salary_based">Salary Employee</option>
+                                <option value="hour_based">Hour Employee</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mt-3" id="my_text_box"></div>
+                        <div class="col-md-6 mt-3" id="my_text_box1"></div>
+                         <div class="col-md-6 mt-5">
+                            <input type="submit" value="Add Employee" class="btn btn-primary w-100">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

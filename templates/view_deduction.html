@@ -1,0 +1,39 @@
+{% if session['role'] == 'admin'%}
+    {% include "admin_head.html" %}
+{% elif session['role'] == "employee"%}
+    {% include "employee_head.html" %}
+{% else %}
+    {% include "head.html"%}
+{% endif %}
+
+<div class="container">
+    <div class="row">
+         <div class="text-center mt-3 h3">View Employee Salary Deductions</div>
+        {% set employee = get_employee_id(deduction['employee_id'])%}
+            <div class="col-md-4 mt-3">
+                <div class="card p-3 mt-2">
+                    <div class="row">
+                        <div class="mt-1">
+                            <div class="text-muted" style="font-size:80%">Employee Name</div>
+                            <div><b>{{employee['firstname']}} {{employee['lastname']}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Number Of Leave Days</div>
+                            <div class="mt-1"><b>{{no_of_days}} Days</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Deduction Amount</div>
+                            <div class="mt-1"><b>$ {{deduction['deduction_amount']}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="text-muted mt-1" style="font-size:80%">Deduction Type</div>
+                            <div class="mt-1"><b>{{deduction['deduction_type']}}</b></div>
+                        </div>
+                         <div class="col-md-6 mt-2">
+                            <a href="salary_report?employee_id={{employee['_id']}}" class="btn btn-primary w-100">Salary Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

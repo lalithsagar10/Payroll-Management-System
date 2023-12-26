@@ -1,0 +1,38 @@
+{% include "admin_head.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-3">
+            <div class="card p-3 mt-3">
+                <form action="pay_salary1" method="post">
+                    <input type="hidden" name="employee_id" value="{{employee_id}}">
+                    <input type="hidden" name="wage_type" value="{{employee['wage_type']}}">
+                    <div class="text-center h3 mt-2"><b>Add Salary</b></div>
+                    {% if employee['wage_type'] == 'salary_based'%}
+                        <div class="mt-2">
+                            <label for="salary" class="form-label">Employee Salary</label>
+                            <input type="number" min="0" name="salary" id="salary" required placeholder="Enter Salary" class="form-control">
+                        </div>
+                        <div class="mt-2">
+                            <label for="pay_frequency" class="form-label">Yearly Pay Frequency</label>
+                            <select name="pay_frequency" id="pay_frequency" required class="form-control">
+                                <option value="">Choose Pay</option>
+                                <option value="12 Times">12 Times</option>
+                                <option value="24 Times">24 Times</option>
+                            </select>
+                        </div>
+                    {% else %}
+                          <div class="mt-2">
+                            <label for="hourly_wage" class="form-label">Hourly Wage</label>
+                            <input type="number" min="0" name="hourly_wage" id="hourly_wage" required placeholder="Enter Hourly Pay" class="form-control">
+                        </div>
+                    {% endif %}
+                    <div class="mt-2">
+                        <input type="submit" value="Pay Salary" class="btn btn-primary w-100">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% if session['role'] == 'admin'%}
+    {% include "admin_head.html" %}
+{% elif session['role'] == "employee"%}
+    {% include "employee_head.html" %}
+{% else %}
+    {% include "head.html"%}
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center mt-3 h3">View Employee Salary</div>
+        {% for pay_salary in pay_salaries: %}
+            <div class="col-md-3 mt-3">
+                <div class="card p-3 mt-2">
+                    <div class="row">
+                        {% if employee_type == 'salary_based': %}
+                            <div class="mt-1">
+                                <div class="text-muted" style="font-size:80%">Employee Salary</div>
+                                <div><b>$ {{pay_salary['salary']}}</b></div>
+                            </div>
+                            <div class="mt-2">
+                                <div class="text-muted" style="font-size:80%">Yearly Pay Frequency</div>
+                                <div><b>{{pay_salary['pay_frequency']}}</b></div>
+                            </div>
+                        {% elif employee_type == 'hour_based':%}
+                             <div class="row">
+                                <div class="text-muted" style="font-size:80%">Hourly Wage</div>
+                                <div><b>{{pay_salary['hourly_wage']}}</b></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

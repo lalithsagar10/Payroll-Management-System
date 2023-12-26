@@ -1,0 +1,31 @@
+    {% include "admin_head.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3 mt-3">
+            <form action="add_tax">
+                <input type="submit" value="Add TaxInfo" class="btn btn-success w-100">
+            </form>
+        </div>
+        {% for tax in taxs: %}
+            <div class="col-md-3 mt-3">
+                <div class="card p-3 mt-2">
+                    <div class="row">
+                        <div>
+                            <div class="text-muted" style="font-size:80%">Tax Number</div>
+                            <div><b>{{tax['_id']}}</b></div>
+                        </div>
+                        <div>
+                            <div class="text-muted" style="font-size:80%">Tax Type</div>
+                            <div><b>{{tax['tax_type']}}</b></div>
+                        </div>
+                        <div>
+                            <div class="text-muted" style="font-size:80%">Tax Amount(%)</div>
+                            <div><b>{{tax['tax_amount']}} %</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
